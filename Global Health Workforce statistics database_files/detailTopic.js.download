@@ -1,0 +1,11 @@
+﻿$(document).ready(function () {
+    $('.ig-title-btn').click(function () {
+        $item = $(this).closest('.ig-container');
+        $item.toggleClass('active');
+        if ($item.hasClass('active')) {
+            $item.find('.i-image').slideDown("100");
+        } else {
+            $item.find('.i-image').slideUp("100");
+        }
+    });
+});

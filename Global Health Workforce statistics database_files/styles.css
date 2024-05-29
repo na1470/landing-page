@@ -1,0 +1,101 @@
+﻿
+
+/* ***************************** 4.13 Subscribe to indicator ******************* */
+
+.subscribe-indicator-btn {
+    display: inline-block;
+    position: relative;
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    color: inherit;
+    font: inherit;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -999em;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    width: 33px;
+    height: 25px;
+    overflow: hidden;
+    background: transparent url('images/indicator-updates-icon.svg') top left no-repeat;
+    background-position: 0 0;
+}
+
+    .subscribe-indicator-btn::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+
+    .subscribe-indicator-btn:hover, .subscribe-indicator-btn:active, .subscribe-indicator-btn:focus {
+        outline: none;
+        background-position: 0 -25px;
+    }
+
+.padTop15 {
+    padding-top: 15px;
+}
+
+
+.submitButton {
+    min-width: 136px;
+    min-height: 50px;
+    border: 0;
+    border-radius: 5px;
+    background-color: #20313b;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.centerDiv {
+    text-align: center;
+}
+
+.feedbackTitle {
+    display: table;
+    width: 100%;
+    height: 3px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    border-bottom: solid 1px #e8e8e8;
+    color: #3c4245;
+    table-layout: fixed;
+}
+
+.feedbackField input[type="text"], .portal textarea {
+    padding-top: 5px;
+    font-weight: 700;
+}
+
+.font18B {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.portal-modal-feedback {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    right: auto;
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    width: 90%;
+    max-width: 700px;
+    padding: 40px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 5px 5px 20px 0 rgba(32,49,59,0.6);
+    text-align: left;
+}

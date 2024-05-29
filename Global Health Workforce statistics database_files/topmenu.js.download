@@ -1,0 +1,94 @@
+﻿var currentOpenItem;
+$('.portal-menu-levels .lv1Item').click(function (e) {
+    // close current open menu
+    if (currentOpenItem !== null && this !== currentOpenItem) {
+        ToggleSecondLevelMenu(currentOpenItem);
+    }
+
+    ToggleSecondLevelMenu(this);
+    currentOpenItem = this === currentOpenItem
+        ? null
+        : this;
+});
+
+$('.portal-menu-levels .mobile-top-menu').click(function () {
+    ToggleFirstLevelMenu();
+});
+
+$(document).mouseup(function (e) {
+    if (!$('.portal-menu-levels').is(e.target) // if the target of the click isn't the container...
+        && $('.portal-menu-levels').has(e.target).length === 0) // ... nor a descendant of the container
+    {
+        if (currentOpenItem !== null) {
+            ToggleSecondLevelMenu(currentOpenItem);
+            currentOpenItem = null;
+        }
+    }
+});
+
+function ToggleFirstLevelMenu() {
+    $('.portal-menu-levels .portal-navigation-menu').slideToggle(200);
+    $('.portal-menu-levels .mobile-top-menu').find('.portal-navigation-icon').toggleClass('close');
+}
+
+function HideFirstLevelMenu() {
+    $('.portal-menu-levels .portal-navigation-menu').hide();
+    $('.portal-menu-levels .mobile-top-menu').find('.portal-navigation-icon').removeClass('close');
+}
+
+function ToggleSecondLevelMenu(firstLevelItem) {
+    $firstLevelItem = $(firstLevelItem);
+    $firstLevelItem.next('ul').slideToggle(200);
+    $firstLevelItem.find('.portal-navigation-icon').toggleClass('close');
+    //firstLevelItem.toggleClass('active');
+}
+
+$(window).resize(function () {
+    if (currentOpenItem !== null) {
+        ToggleSecondLevelMenu(currentOpenItem);
+        currentOpenItem = null;
+    }
+
+    if (window.matchMedia('screen and (max-width: 1019px)').matches) {
+        HideFirstLevelMenu();
+    }
+    else {
+        $('.portal-menu-levels .portal-navigation-menu').show();
+    }
+});
+
+function isMobile() {
+    return ('ontouchstart' in document.documentElement);
+}
+
+
+function fixedNavigation($topMenu) {    
+    $topMenuClone = $('.portal-main-menu-container.portal-menu-levels.portal-menu-clone');
+
+    var $topActivate = $topMenuClone.offset().top - $('.navWrapper').outerHeight();
+
+    if (!window.matchMedia('screen and (min-width: 1020px)').matches) {
+        $topMenu.removeClass('active-fixed');
+    }
+
+    $(window).scroll(function () {
+        var $topActivate = $topMenuClone.offset().top - $('.navWrapper').outerHeight();
+        if (($(window).scrollTop() >= $topActivate) && (window.matchMedia('screen and (min-width: 1020px)').matches)) {
+            $topMenu.addClass('active-fixed');
+        }
+        else {
+            $topMenu.removeClass('active-fixed');
+        }
+    });
+    
+}
+
+var $topMenu = $('.portal-main-menu-container.portal-menu-levels.navigation-fixed');
+if ($topMenu.length && !isMobile()) {
+    $topMenu.clone().removeClass('navigation-fixed').addClass('portal-menu-clone').insertAfter($topMenu);    
+    fixedNavigation($topMenu);
+
+    $(window).resize(function () {
+        fixedNavigation($topMenu);
+    });
+}
